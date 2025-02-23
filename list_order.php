@@ -2,8 +2,8 @@
 
 header("Content-Type:application/json");
 require_once __DIR__ . "/includes/Logger.php";
-// $user_id = $_POST['user_id'] ?? null;
-$user_id = 1;
+$user_id = $_POST['user_id'] ?? null;
+// $user_id = 1;
 
 if(empty($user_id)){
     echo json_encode(["status" => "error","User ID is required"]);
@@ -46,4 +46,4 @@ else {
     Logger::log("User location is not set");
 }
 
-
+closeDBConnection();
