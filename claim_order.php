@@ -2,8 +2,7 @@
 
 header("Content-Type:application/json");
 require_once __DIR__ . "/includes/Logger.php";
-// $order_details_ids = is_array($_POST['order_details_ids']) ? $_POST['order_details_ids'] : null;
-$order_details_ids = [1];
+$order_details_ids = is_array($_POST['order_details_ids']) ? $_POST['order_details_ids'] : null;
 
 if(!$order_details_ids){
     echo json_encode(['status' => 'error', 'message' => 'Order details ID\'s are required']);
@@ -57,6 +56,7 @@ try{
     }
     $db->insertMulti("claimed_order_details",$claimed_order_details);
     Logger::log("Inserted data in claim_order_details table for claim_order id: ".$claimed_order_id);
+    echo json_encode(['status' => 'success', 'message' => 'Order Claimed Successfully.']);
     $db->commit();
 }
 catch(Exception $e){
