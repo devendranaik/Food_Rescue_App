@@ -1,0 +1,75 @@
+[2025-02-23 12:04:23] [INFO] Getting order details for ids:Array
+(
+    [0] => 1
+)
+
+[2025-02-23 12:04:23] [INFO] Updated value for status in food_order_details table
+[2025-02-23 12:04:23] [INFO] Inserted data in claimed_order table with id: 6
+[2025-02-23 12:06:42] [INFO] Getting order details for ids:Array
+(
+    [0] => 1
+)
+
+[2025-02-23 12:06:44] [INFO] Getting order details for ids:Array
+(
+    [0] => 1
+)
+
+[2025-02-23 12:06:44] [INFO] Getting order details for ids:Array
+(
+    [0] => 1
+)
+
+[2025-02-23 12:06:57] [INFO] Getting order details for ids:Array
+(
+    [0] => 1
+)
+
+[2025-02-23 12:07:24] [INFO] Getting order details for ids:Array
+(
+    [0] => 1
+)
+
+[2025-02-23 12:08:04] [INFO] Getting order details for ids:Array
+(
+    [0] => 1
+)
+
+[2025-02-23 12:08:04] [INFO] Updated value for status in food_order_details table
+[2025-02-23 12:08:13] [INFO] Getting order details for ids:Array
+(
+    [0] => 1
+)
+
+[2025-02-23 12:08:13] [INFO] Updated value for status in food_order_details table
+[2025-02-23 12:08:13] [INFO] Inserted data in claimed_order table with id: 7
+[2025-02-23 12:08:37] [INFO] Getting order details for ids:Array
+(
+    [0] => 1
+)
+
+[2025-02-23 12:08:37] [INFO] Updated value for status in food_order_details table
+[2025-02-23 12:08:37] [INFO] Inserted data in claimed_order table with id: 8
+[2025-02-23 12:09:57] [INFO] Getting order details for ids:Array
+(
+    [0] => 1
+)
+
+[2025-02-23 12:09:57] [INFO] Updated value for status in food_order_details table
+[2025-02-23 12:09:57] [INFO] Inserted data in claimed_order table with id: 9
+[2025-02-23 12:10:10] [INFO] Getting order details for ids:Array
+(
+    [0] => 1
+)
+
+[2025-02-23 12:10:10] [INFO] Updated value for status in food_order_details table
+[2025-02-23 12:10:10] [INFO] Inserted data in claimed_order table with id: 10
+[2025-02-23 12:10:10] [INFO] Inserted data in claim_order_details table for claim_order id: 10
+[2025-02-23 12:10:31] [INFO] Getting order details for ids:Array
+(
+    [0] => 1
+)
+
+[2025-02-23 12:10:31] [INFO] Updated value for status in food_order_details table
+[2025-02-23 12:10:31] [INFO] Inserted data in claimed_order table with id: 11
+[2025-02-23 12:10:31] [INFO] Inserted data in claim_order_details table for claim_order id: 11
