@@ -73,10 +73,13 @@ CREATE TABLE `restaurant_menu_items` (
 DROP TABLE IF EXISTS `claimed_order`;
 CREATE TABLE `claimed_order` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
   `total_amount` int(11) NOT NULL,
   `payment_status` varchar(20) NOT NULL DEFAULT 'Success',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `claimed_order_user_id_fk` (`user_id`),
+  CONSTRAINT `claimed_order_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 DROP TABLE IF EXISTS `claimed_order_details`;
@@ -92,10 +95,14 @@ CREATE TABLE `claimed_order_details` (
 -- Stored Procedure
 
 DELIMITER $$
-DROP PROCEDURE IF EXISTS ListCancelledOrdersByUserId;
-CREATE PROCEDURE ListCancelledOrdersByUserId (IN IS_VEG INT, IN U_LATITUDE DOUBLE, IN U_LONGITUDE DOUBLE)
+DROP PROCEDURE IF EXISTS ListCancelledOrdersByUserId$$
+CREATE PROCEDURE ListCancelledOrdersByUserId (IN IS_VEG INT, IN MIN_LAT DOUBLE, IN MAX_LAT DOUBLE, IN MIN_LON DOUBLE, IN MAX_LON DOUBLE, IN LIMIT_NO INT, IN OFFSET_NO INT)
 BEGIN
-	SELECT fo.id as food_order_id, fod.id as food_order_details_id,r.name as restaurant_name, rmi.menu_items,r.name,rmi.discounted_price,(6371 * acos(cos(radians(U_LATITUDE)) * cos(radians(r.latitude)) * cos(radians(r.longitude) - radians(U_LONGITUDE)) + sin(radians(U_LATITUDE)) * sin(radians(r.latitude)))) AS distance 
+	SELECT fo.id as food_order_id, fod.id as food_order_details_id,r.name as restaurant_name, rmi.menu_items,r.name,rmi.discounted_price, r.latitude, r.longitude
+  -- ROUND((6371 * acos(
+  --           cos(radians(U_LATITUDE)) * cos(radians(r.latitude)) * cos(radians(r.longitude) - radians(U_LONGITUDE)) + 
+  --           sin(radians(U_LATITUDE)) * sin(radians(r.latitude))
+  --       )), 2) AS distance
     FROM food_order fo 
     join food_order_details fod on fod.food_order_id = fo.id 
     join restaurant r on fo.restaurant_id = r.id 
@@ -104,6 +111,9 @@ where
 	(IS_VEG = 0 OR rmi.is_vegetarian = 1)
     and rmi.is_sensitive = 0
     and fod.status = "Cancelled"
-    having distance <=3;
+    AND r.latitude BETWEEN MIN_LAT AND MAX_LAT
+    AND r.longitude BETWEEN MIN_LON AND MAX_LON
+limit LIMIT_NO offset OFFSET_NO;
+    -- having distance <=3;
 END$$
 DELIMITER ;
